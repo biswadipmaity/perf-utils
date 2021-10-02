@@ -119,6 +119,28 @@ type CacheProfile struct {
 	TimeRunning        *uint64 `json:"time_running,omitempty"`
 }
 
+
+// RawProfiler is a raw profiler.
+type RawProfiler interface {
+	Start() error
+	Reset() error
+	Stop() error
+	Close() error
+	Profile() (*RawProfile, error)
+}
+
+// RawProfile is returned by a RawProfiler.
+type RawProfile struct {
+	INT_MISC_RECOVERY_CYCLES_ANY      *uint64 `json:"int_misc_recovery_cycles_any,omitempty"`
+	CYCLE_ACTIVITY_STALLS_L2_MISS     *uint64 `json:"cycle_activity_stalls_l2_miss,omitempty"`
+	CYCLE_ACTIVITY_STALLS_L3_MISS     *uint64 `json:"cycle_activity_stalls_l3_miss,omitempty"`
+	CYCLE_ACTIVITY_STALLS_L1D_MISS    *uint64 `json:"cycle_activity_stalls_l1d_miss,omitempty"`
+	CYCLE_ACTIVITY_STALLS_MEM_ANY     *uint64 `json:"cycle_activity_stalls_mem_any,omitempty"`
+	TimeEnabled        *uint64 `json:"time_enabled,omitempty"`
+	TimeRunning        *uint64 `json:"time_running,omitempty"`
+}
+
+
 // ProfileValue is a value returned by a profiler.
 type ProfileValue struct {
 	Value       uint64
